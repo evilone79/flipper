@@ -12,4 +12,9 @@ cd flipper
 
 ### Usage
 
+Credentials setup:
+```
+echo 'username' >> ./install/bin/creds
+echo 'password' >> ./install/bin/creds
+```
 Run `./install/bin/flipper`, lean back and relax
