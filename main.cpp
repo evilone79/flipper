@@ -31,22 +31,22 @@ namespace
 
 int main()
 {
-    std::signal(SIGINT, signal_handler);
-
-    auto creds = credentials::load_from_file("./creds");
-
-    // Create a client
-    auto conn_opts = mqtt::connect_options_builder()
-            .keep_alive_interval(seconds(10))
-            .user_name(creds.username)
-            .password(creds.password)
-            .clean_session(true)
-            .finalize();
-
-    mqtt::client client(HOST, CLIENT_ID);
+    std::signal(SIGINT, signal_handler);    
 
     try
     {
+       auto creds = credentials::load_from_file("./creds");
+
+       // Create a client
+       auto conn_opts = mqtt::connect_options_builder()
+               .keep_alive_interval(seconds(10))
+               .user_name(creds.username)
+               .password(creds.password)
+               .clean_session(true)
+               .finalize();
+
+        mqtt::client client(HOST, CLIENT_ID);
+    
         util::log("Connecting client ", CLIENT_ID);
         auto rs = client.connect(conn_opts);
         util::log("Connected. MQTT ver. ", rs.get_mqtt_version());
